@@ -1,10 +1,13 @@
 body {
   padding-bottom: 20px;
-  background: #EEE9D1;
+  background: #EDF2F4;
   font-family: 'Lato', sans-serif;
 }
+a {
+  color: #D90429;
+}
 .navbar {
-  background: #0A1C28;
+  background: #D90429;
   .navbar-brand {
     color: #fff;
   }
@@ -14,14 +17,19 @@ body {
 }
 .nav-tabs {
   margin-top: 20px;
+  .nav-item {
+    a {
+      &:not(.active) {
+        &:hover {
+          border-color: transparent;
+        }
+      }
+    }
+  }
 }
 .info {
-  background: #41848F;
-  color: #fff;
+  color: #000;
   padding: 15px 0;
-  a {
-    color: #EEE9D1;
-  }
   p {
     font-size: 14px;
     strong {
@@ -30,7 +38,7 @@ body {
   }
 }
 .upload {
-  background: #97C0B7;
+  background: #EF233C;
   padding: 15px 0;
   text-align: center;
   .file-upload {
@@ -70,4 +78,27 @@ body {
   border: 1px solid #ddd;
   border-top: none;
   background: #fff;
+}
+table {
+  &.table-list {
+    tr {
+      th {
+        &:hover {
+          color: #069;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+        &.date {
+          width: 120px;
+        }
+      }
+      td {
+        font-size: 13px;
+        padding: 5px 10px;
+        &.center {
+          text-align: center;
+        }
+      }
+    }
+  }
 }

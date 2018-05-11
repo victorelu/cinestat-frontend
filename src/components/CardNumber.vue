@@ -22,7 +22,6 @@ export default {
       required: true
     },
     number: {
-      type: String,
       required: true
     }
   }

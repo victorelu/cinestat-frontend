@@ -11,7 +11,7 @@
         </button>
       </div>
     </div>
-    <table class="table table-sm table-striped table-hover">
+    <table class="table table-sm table-striped table-hover table-list">
       <thead>
         <tr v-for="(row, rowIndex) in header" :key="rowIndex">
           <th
@@ -40,9 +40,9 @@
           <td>{{ movie['Release Date'] }}</td>
           <td>{{ movie['Date Rated'] }}</td>
           <td>{{ movie['Genres'].join(', ') }}</td>
-          <td>{{ movie['Your Rating'] }}</td>
-          <td>{{ movie['IMDb Rating'] }}</td>
-          <td>{{ movie['Rating Difference'] }}</td>
+          <td class="center">{{ movie['Your Rating'] }}</td>
+          <td class="center">{{ movie['IMDb Rating'] }}</td>
+          <td class="center">{{ movie['Rating Difference'] }}</td>
         </tr>
       </tbody>
     </table>
@@ -50,8 +50,7 @@
 </template>
 
 <script>
-import { orderBy } from 'lodash'
-import { arrayIntersect } from '@/helpers'
+import { intersection, orderBy } from 'lodash'
 export default {
   name: 'List',
   data () {
@@ -92,14 +91,16 @@ export default {
       return this.movies
         .filter((movie) => {
           if (this.filters.genres.length > 0) {
-            return arrayIntersect(movie['Genres'], this.filters.genres).length > 0
+            return intersection(movie['Genres'], this.filters.genres).length > 0
           }
           return true
         })
     },
     sortedMovies () {
       return orderBy(this.filteredMovies, [function (m) {
-        return ['You', 'IMDb', 'Difference'].indexOf(this.sort.by) === -1 ? parseFloat(m[this.sort.by]) : m[this.sort.by]
+        return ['Your Rating', 'IMDb Rating', 'Rating Difference'].indexOf(this.sort.by) === -1
+          ? m[this.sort.by]
+          : parseFloat(m[this.sort.by])
       }.bind(this)], [this.sort.direction])
     }
   },
@@ -128,17 +129,6 @@ export default {
 </script>
 
 <style scoped>
-.table tr td {
-  font-size: 13px;
-}
-.table tr th:hover {
-  color: #069;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.table tr th.date {
-  width: 120px;
-}
 .btn-group {
   margin-right: 5px;
   margin-bottom: 5px;

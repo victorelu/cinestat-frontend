@@ -5,7 +5,3 @@ export function getRandomColor (opacity) {
   let b = num & 255
   return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity + ')'
 }
-
-export function arrayIntersect (a, b) {
-  return [...new Set(a)].filter(x => new Set(b).has(x))
-}

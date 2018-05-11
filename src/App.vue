@@ -96,6 +96,7 @@ export default {
                 })
                 .map((movie) => {
                   movie['Genres'] = movie['Genres'].split(', ')
+                  movie['Directors'] = movie['Directors'].split(', ')
                   return movie
                 })
             )
