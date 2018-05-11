@@ -59,8 +59,8 @@ export default {
       header: [
         [
           { label: 'Title', rowspan: 2, sortBy: 'Title' },
-          { label: 'Released On', rowspan: 2, class: 'date', sortBy: 'Release Date' },
-          { label: 'Rated On', rowspan: 2, class: 'date', sortBy: 'Date Rated' },
+          { label: 'Released on', rowspan: 2, class: 'date', sortBy: 'Release Date' },
+          { label: 'Rated on', rowspan: 2, class: 'date', sortBy: 'Date Rated' },
           { label: 'Genres', rowspan: 2 },
           { label: 'Ratings', colspan: 3, sort: false }
         ],

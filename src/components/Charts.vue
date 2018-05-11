@@ -1,26 +1,6 @@
 <template>
   <div class="container">
     <div class="row info-group">
-      <div class="col-sm-4 single-number">
-        <p>
-          Your Average Rating:<br/>
-          <strong>{{ this.aggregated.averageUserRating }}</strong>
-        </p>
-      </div>
-      <div class="col-sm-4 single-number">
-        <p>
-          Average IMDb Rating:<br/>
-          <strong>{{ this.aggregated.averageImdbRating }}</strong>
-        </p>
-      </div>
-      <div class="col-sm-4 single-number">
-        <p>
-          Average Rating Difference:<br/>
-          <strong>{{ this.aggregated.averageRatingDifference }}</strong>
-        </p>
-      </div>
-    </div>
-    <div class="row info-group">
       <div class="col-sm-12">
         <h2>Year of release</h2>
         <p>A rundown by <strong>year</strong> of the movies you watched.</p>
@@ -33,7 +13,7 @@
     </div>
     <div class="row info-group">
       <div class="col-sm-6">
-        <h2>Year Rated</h2>
+        <h2>Ratings by Year</h2>
         <p>A rundown by <strong>year</strong> of the ratings you gave for movies you watched.</p>
         <Chart
           :source="this.aggregated.years.rated"
@@ -42,7 +22,7 @@
         />
       </div>
       <div class="col-sm-6">
-        <h2>Month Rated</h2>
+        <h2>Ratings by Month</h2>
         <p>A rundown by <strong>month</strong> of the ratings you gave for movies you watched. If you rated movies soon after watching them, this chart should be an accurate representation of when you watched them.</p>
         <Chart
           :source="this.aggregated.months.rated"
@@ -98,13 +78,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.info-group {
-  margin-bottom: 20px;
-  padding-top: 20px;
-}
-.single-number {
-  text-align: center;
-}
-</style>

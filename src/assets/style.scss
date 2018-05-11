@@ -1,0 +1,73 @@
+body {
+  padding-bottom: 20px;
+  background: #EEE9D1;
+  font-family: 'Lato', sans-serif;
+}
+.navbar {
+  background: #0A1C28;
+  .navbar-brand {
+    color: #fff;
+  }
+  .btn-info-wrap {
+    text-align: right;
+  }
+}
+.nav-tabs {
+  margin-top: 20px;
+}
+.info {
+  background: #41848F;
+  color: #fff;
+  padding: 15px 0;
+  a {
+    color: #EEE9D1;
+  }
+  p {
+    font-size: 14px;
+    strong {
+      font-size: 1.2em;
+    }
+  }
+}
+.upload {
+  background: #97C0B7;
+  padding: 15px 0;
+  text-align: center;
+  .file-upload {
+    margin-bottom: 0;
+  }
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+      .btn {
+        background-color: #f5f5f5;
+      }
+    }
+    .btn {
+      border: 2px solid gray;
+      color: gray;
+      background-color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+  }
+}
+.tab-content {
+  margin-top: -1px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background: #fff;
+}
