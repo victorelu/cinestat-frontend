@@ -1,39 +1,35 @@
 <template>
   <div id="app">
+    <div class="loading" v-if="loading">Loading&#8230;</div>
     <nav class="navbar">
       <div class="container">
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <a class="navbar-brand" href="#">
-            Movier
+            cinestat
           </a>
         </div>
-        <div class="col-sm-2 btn-info-wrap">
+        <div class="col-sm-6 btn-info-wrap">
+          <button class="btn btn-light btn-sm" v-if="movies.length > 0 && !personName" @click="viewShare = !viewShare">
+            Share Your Stats
+          </button>
           <button class="btn btn-light btn-sm" v-if="movies.length > 0" @click="viewInfo = !viewInfo">
             <span v-if="viewInfo">Hide Info</span>
             <span v-else>Show Info</span>
           </button>
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload ratings file</button>
+            <input type="file" class="form-control-file" id="csvFile" @change="handleFileChange">
+          </div>
         </div>
       </div>
     </nav>
-    <section class="upload" v-if="viewInfo">
-      <div class="container">
-        <div class="col-xs-12">
-          <form>
-            <div class="form-group file-upload">
-              <div class="upload-btn-wrapper">
-                <button class="btn">Upload ratings file</button>
-                <input type="file" class="form-control-file" id="csvFile" @change="handleFileChange">
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+    <Share v-if="viewShare" />
     <Info v-if="viewInfo" />
-    <section class="movies-data">
+    <section class="movies-data" v-if="movies.length !== 0">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12" v-if="movies.length !== 0">
+          <div class="col-sm-12">
+            <h1 v-if="personName">{{ personName }}'s cinestats</h1>
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'Summary' }">
@@ -62,23 +58,27 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Papa from 'papaparse'
 import { mapGetters } from 'vuex'
 
+import Share from '@/components/Share'
 import Info from '@/components/Info'
 
 export default {
   name: 'App',
   components: {
-    Info
+    Info,
+    Share
   },
   data () {
     return {
-      viewInfo: true
+      viewInfo: true,
+      viewShare: false
     }
   },
   computed: {
-    ...mapGetters(['movies'])
+    ...mapGetters(['movies', 'personName', 'loading'])
   },
   methods: {
     handleFileChange (event) {
@@ -102,10 +102,33 @@ export default {
             )
             this.$store.dispatch('calculateRatingDifferences')
             this.$store.dispatch('aggregate')
+            this.$store.commit('setPersonName', null)
             this.viewInfo = false
           }.bind(this)
         })
       }
+    }
+  },
+  mounted () {
+    // If you got here via a shared stat
+    if (this.$route.params.id) {
+      this.$store.commit('setLoading', true)
+      axios.get(process.env.BACKEND_URL + 'stats/' + this.$route.params.id)
+        .then((res) => {
+          if (res.status === 200 && typeof res.data.name === 'string' && typeof res.data.movies === 'object') {
+            this.$store.commit('setMovies', res.data.movies)
+            this.$store.commit('setPersonName', res.data.name ? res.data.name : 'User')
+            this.$store.dispatch('calculateRatingDifferences')
+            this.$store.dispatch('aggregate')
+            this.viewInfo = false
+            this.$router.push({ name: 'Summary' })
+            this.$store.commit('setLoading', false)
+          }
+        })
+        .catch((err) => {
+          console.log(err.toString())
+          this.$store.commit('setLoading', false)
+        })
     }
   }
 }

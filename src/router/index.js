@@ -15,7 +15,7 @@ export default new Router({
       component: Summary
     },
     {
-      path: '/List',
+      path: '/list',
       name: 'List',
       component: List
     },
@@ -23,6 +23,9 @@ export default new Router({
       path: '/charts',
       name: 'Charts',
       component: Charts
+    },
+    {
+      path: '/stats/:id'
     }
   ]
 })

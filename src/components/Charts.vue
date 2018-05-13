@@ -3,7 +3,7 @@
     <div class="row info-group">
       <div class="col-sm-12">
         <h2>Year of release</h2>
-        <p>A rundown by <strong>year</strong> of the movies you watched.</p>
+        <p>A rundown by <strong>year</strong> of the movies watched.</p>
         <Chart
           :source="this.aggregated.years.release"
           label="Released"
@@ -14,7 +14,7 @@
     <div class="row info-group">
       <div class="col-sm-6">
         <h2>Ratings by Year</h2>
-        <p>A rundown by <strong>year</strong> of the ratings you gave for movies you watched.</p>
+        <p>A rundown by <strong>year</strong> of the ratings given for movies watched.</p>
         <Chart
           :source="this.aggregated.years.rated"
           label="Rated"
@@ -23,7 +23,7 @@
       </div>
       <div class="col-sm-6">
         <h2>Ratings by Month</h2>
-        <p>A rundown by <strong>month</strong> of the ratings you gave for movies you watched. If you rated movies soon after watching them, this chart should be an accurate representation of when you watched them.</p>
+        <p>A rundown by <strong>month</strong> of the ratings given for movies watched. If movies were rated soon after watching them, this chart should be a fairly accurate representation.</p>
         <Chart
           :source="this.aggregated.months.rated"
           :datasetLabels="months"
@@ -35,7 +35,7 @@
     <div class="row info-group">
       <div class="col-sm-12">
         <h2>How you rated</h2>
-        <p>A rundown of the average rating you gave to the movies you watched.</p>
+        <p>A rundown of the average rating given to the watched movies.</p>
         <Chart
           :source="this.aggregated.userRatings"
           label="Rated"

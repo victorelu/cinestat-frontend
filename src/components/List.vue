@@ -40,9 +40,9 @@
           <td>{{ movie['Release Date'] }}</td>
           <td>{{ movie['Date Rated'] }}</td>
           <td>{{ movie['Genres'].join(', ') }}</td>
-          <td class="center">{{ movie['Your Rating'] }}</td>
-          <td class="center">{{ movie['IMDb Rating'] }}</td>
-          <td class="center">{{ movie['Rating Difference'] }}</td>
+          <td class="center fixed-width">{{ movie['Your Rating'] }}</td>
+          <td class="center fixed-width">{{ movie['IMDb Rating'] }}</td>
+          <td class="center fixed-width">{{ movie['Rating Difference'] }}</td>
         </tr>
       </tbody>
     </table>
@@ -64,7 +64,7 @@ export default {
           { label: 'Ratings', colspan: 3, sort: false }
         ],
         [
-          { label: 'You', sortBy: 'Your Rating' },
+          { label: this.$store.getters.personName ? this.$store.getters.personName : 'You', sortBy: 'Your Rating' },
           { label: 'IMDb', sortBy: 'IMDb Rating' },
           { label: 'Difference', sortBy: 'Rating Difference' }
         ]
@@ -135,5 +135,8 @@ export default {
 }
 .filters {
   padding: 10px;
+}
+.fixed-width {
+  width: 85px;
 }
 </style>

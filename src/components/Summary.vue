@@ -7,27 +7,12 @@
           header="Total Movies Rated"
           :number="this.movies.length"
         />
+      </div>
+      <div class="col-sm-6">
         <CardNumber
           header="Total Duration"
           :number="this.aggregated.duration | days"
         />
-      </div>
-      <div class="col-sm-6">
-        <Card>
-          <template slot="header">
-            Your most popular directors
-          </template>
-          <template slot="body">
-            <table class="table table-striped table-hover table-condensed">
-              <tbody>
-                <tr v-for="(director, index) in moviesByDirector" :key="index">
-                  <td>{{ director[0] }}</td>
-                  <td>{{ director[1] }} titles</td>
-                </tr>
-              </tbody>
-            </table>
-          </template>
-        </Card>
       </div>
     </div>
 
@@ -35,7 +20,7 @@
     <div class="row">
       <div class="col-sm-4">
         <CardNumber
-          header="Your Average Rating"
+          :header="`${personName ? personName : 'Your'} Average Rating`"
           :number="this.aggregated.averageUserRating"
         />
       </div>
@@ -57,13 +42,13 @@
     <div class="row">
       <div class="col-sm-6">
         <CardRatingsTable
-          header="Top 10 movies you found over-rated"
+          header="Top 10 movies considered overrated"
           :movies="moviesOverrated"
         />
       </div>
       <div class="col-sm-6">
         <CardRatingsTable
-          header="Top 10 movies you found under-rated"
+          header="Top 10 movies considered underrated"
           :movies="moviesUnderrated"
         />
       </div>
@@ -78,9 +63,9 @@
         />
       </div>
       <div class="col-sm-6">
-        <CardDurationTable
-          header="Shortest Movies Watched (excluding 'short' movies)"
-          :movies="moviesShortest"
+        <CardDirectorsTable
+          header="Most Popular Directors"
+          :directors="moviesByDirector"
         />
       </div>
     </div>
@@ -91,12 +76,14 @@
 import { take, takeRight, orderBy } from 'lodash'
 import Card from '@/components/Card'
 import CardNumber from '@/components/CardNumber'
+import CardDirectorsTable from '@/components/CardDirectorsTable'
 import CardDurationTable from '@/components/CardDurationTable'
 import CardRatingsTable from '@/components/CardRatingsTable'
 export default {
   components: {
     Card,
     CardNumber,
+    CardDirectorsTable,
     CardDurationTable,
     CardRatingsTable
   },
@@ -108,7 +95,7 @@ export default {
       return this.$store.getters.movies
     },
     moviesByDirector () {
-      return take(orderBy(Object.entries(this.$store.getters.aggregated.directors), [(d) => d[1]], ['desc']), 8)
+      return take(orderBy(Object.entries(this.$store.getters.aggregated.directors), [(d) => d[1]], ['desc']), 10)
     },
     moviesByDuration () {
       return orderBy(this.movies.filter((m) => m['Title Type'] === 'movie'), [function (m) {
@@ -117,9 +104,6 @@ export default {
     },
     moviesLongest () {
       return take(this.moviesByDuration, 10)
-    },
-    moviesShortest () {
-      return takeRight(this.moviesByDuration.filter((m) => m['Title Type'] !== 'short'), 10).reverse()
     },
     moviesByDifference () {
       return orderBy(this.movies, [function (m) {
@@ -131,6 +115,9 @@ export default {
     },
     moviesUnderrated () {
       return takeRight(this.moviesByDifference, 10).reverse()
+    },
+    personName () {
+      return this.$store.getters.personName
     }
   },
   filters: {

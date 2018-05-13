@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "lodash": "^4.17.10",
     "papaparse": "^4.3.7",

@@ -7,7 +7,9 @@ export const store = new Vuex.Store({
   state: {
     movies: [],
     genres: [],
-    aggregated: {}
+    aggregated: {},
+    personName: null,
+    loading: false
   },
   getters: {
     movies: (state) => {
@@ -18,14 +20,26 @@ export const store = new Vuex.Store({
     },
     aggregated: (state) => {
       return state.aggregated
+    },
+    personName: (state) => {
+      return state.personName
+    },
+    loading: (state) => {
+      return state.loading
     }
   },
   mutations: {
     setMovies (state, payload) {
       state.movies = payload
     },
+    setPersonName (state, payload) {
+      state.personName = payload
+    },
     setAggregated (state, payload) {
       state.aggregated = Object.assign(state.aggregated, payload)
+    },
+    setLoading (state, payload) {
+      state.loading = payload
     }
   },
   actions: {

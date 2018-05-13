@@ -22,16 +22,16 @@
           </p>
           <p>
             <strong>What about the privacy of my data?</strong><br />
-            No information is sent to a server - all the data parsing happens in the browser. No need to be afraid of being shamed by your friends for the movies you watched.
+            No information is sent to a server - all the data parsing happens in the browser. No need to be afraid of being shamed by your friends for the movies you watched. Unless...
           </p>
           <p>
-            <strong>But what if I do want my friends to see my ratings?</strong><br />
-            The feature is planned, and if time allows, it will actually be built.
+            <strong>What if I do want my friends to see my ratings?</strong><br />
+            Once the app parses your uploaded CSV, you also get the option of sharing your movie watch history with other people. It's your choice who you share this with. It's only at this point that information in the movie history file is sent and saved to a server. That part is also open source and can be seen <a target="_blank" href="https://github.com/victorelu/cinestat-backend">here</a>.
           </p>
           <p>
             <strong>Who built this thing?</strong><br />
             It's built by <a href="https://victor.avasiloaei.com" target="_blank">Victor Avasiloaei</a>, a software developer based in Amsterdam, Netherlands, who finds it weird to refer to himself in 3rd person.<br />
-            The code behind it is available on <a href="" target="_blank">GitHub</a>. This page is NOT affiliated with IMDb in any way.
+            The code behind it is available on <a target="_blank" href="https://gitub.com/victorelu/cinestat-frontend">GitHub</a>. This page is NOT affiliated with IMDb in any way.
           </p>
         </div>
       </div>

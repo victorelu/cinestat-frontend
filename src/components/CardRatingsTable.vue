@@ -10,7 +10,7 @@
             <th></th>
             <th>Title</th>
             <th class="center">IMDb</th>
-            <th class="center">You</th>
+            <th class="center">{{ name }}</th>
             <th class="center">Difference</th>
           </tr>
         </thead>
@@ -32,6 +32,11 @@ import Card from './Card'
 export default {
   components: {
     Card
+  },
+  computed: {
+    name () {
+      return this.$store.getters.personName ? this.$store.getters.personName : 'You'
+    }
   },
   props: {
     header: {
