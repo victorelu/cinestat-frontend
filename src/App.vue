@@ -92,7 +92,7 @@ export default {
             this.$store.commit('setMovies',
               movies
                 .filter((movie) => {
-                  return movie['Title'] !== undefined
+                  return movie['Title'] !== undefined && movie['Title Type'] === 'movie'
                 })
                 .map((movie) => {
                   movie['Genres'] = movie['Genres'].split(', ')

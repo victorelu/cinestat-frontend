@@ -5,19 +5,29 @@
         <div class="col-sm-12">
           <p>
             <strong>What is this?</strong><br />
-            This tool gives you more insight into your movie watching habits and provides fun information about the movies you watched, based on your IMDb rating history.
+            This tool gives you more insight into your movie watching habits and provides fun information about the movies you watched, based on your IMDb rating history.<br />
+            This application is not affiliated wih IMDb in any way.
           </p>
           <p>
-            <strong>Who is this for?</strong><br />
+            <strong>Who can use this?</strong><br />
             It can be used by anyone with a IMDb user account that has made it a habit to rate movies after watching them.
           </p>
           <p>
             <strong>How does it work?</strong><br />
+            <strong>I already have an IMDb account</strong>
             <ol>
-              <li>First and foremost, you need either an <a target="_blank" href="https://imdb.com">IMDb</a> user account or a CSV file in an identical format like the one IMDb provides. It would be weird to already have something like this, but who am I to judge.</li>
-              <li>Log in to IMDb, click on your name in the top right, click on Your Ratings.</li>
-              <li>Click on the three vertical dots - it's a menu! - and then click on Export - this will download a CSV file to your computer.</li>
-              <li>Come back to this page and upload the file.</li>
+              <li>Log in to IMDb</li>
+              <li>Click on your name in the top right</li>
+              <li>Click on Your Ratings</li>
+              <li>Click on the three vertical dots - it's a menu!</li>
+              <li>Click on Export - this will download a CSV file to your computer.</li>
+              <li>Come back here and upload the file.</li>
+            </ol>
+            <strong>I don't have an IMDb account</strong>
+            <ol>
+              <li>Things get tricky if you don't have an account as the application can (for now) only parse information from a file in the structure exported by IMDb. The file itself is a regular CSV file which can be open with most/all spreadsheet software such as Microsoft Excel.</li>
+              <li>You can grab a template of the IMDb ratings export from <a href="/static/example.csv">here</a>.</li>
+              <li>Fill your movie ratings historical data in manually. If you're tech savvy enough and can do it automatically somehow, that's obviously also an option.</li>
             </ol>
           </p>
           <p>
@@ -26,7 +36,7 @@
           </p>
           <p>
             <strong>What if I do want my friends to see my ratings?</strong><br />
-            Once the app parses your uploaded CSV, you also get the option of sharing your movie watch history with other people. It's your choice who you share this with. It's only at this point that information in the movie history file is sent and saved to a server. That part is also open source and can be seen <a target="_blank" href="https://github.com/victorelu/cinestat-backend">here</a>.
+            Once the app parses your uploaded CSV, you also get the option of sharing your movie watch history with other people. It's your choice who you share this with. It's only at this point that information in the movie history file is sent and saved to a server. A very simple back-end handles this and it can also be seen <a target="_blank" href="https://github.com/victorelu/cinestat-backend">here</a>.
           </p>
           <p>
             <strong>Who built this thing?</strong><br />

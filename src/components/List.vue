@@ -40,6 +40,7 @@
             </td>
             <td>{{ movie['Release Date'] }}</td>
             <td>{{ movie['Date Rated'] }}</td>
+            <td>{{ movie['Runtime (mins)'] }}</td>
             <td>{{ movie['Genres'].join(', ') }}</td>
             <td class="center fixed-width">{{ movie['Your Rating'] }}</td>
             <td class="center fixed-width">{{ movie['IMDb Rating'] }}</td>
@@ -62,6 +63,7 @@ export default {
           { label: 'Title', rowspan: 2, sortBy: 'Title' },
           { label: 'Released', rowspan: 2, class: 'date', sortBy: 'Release Date' },
           { label: 'Rated', rowspan: 2, class: 'date', sortBy: 'Date Rated' },
+          { label: 'Runtime', rowspan: 2, sortBy: 'Runtime (mins)' },
           { label: 'Genres', rowspan: 2 },
           { label: 'Ratings', colspan: 3, sort: false, class: 'rating' }
         ],
@@ -100,7 +102,7 @@ export default {
     },
     sortedMovies () {
       return orderBy(this.filteredMovies, [function (m) {
-        return ['Your Rating', 'IMDb Rating', 'Rating Difference'].indexOf(this.sort.by) === -1
+        return ['Your Rating', 'IMDb Rating', 'Rating Difference', 'Runtime (mins)'].indexOf(this.sort.by) === -1
           ? m[this.sort.by]
           : parseFloat(m[this.sort.by])
       }.bind(this)], [this.sort.direction])

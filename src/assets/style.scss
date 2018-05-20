@@ -131,6 +131,12 @@ table {
   }
 }
 
+@media (min-width: 576px) {
+  .brand-wrap {
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 575px) {
   .navbar {
     .brand-wrap {
