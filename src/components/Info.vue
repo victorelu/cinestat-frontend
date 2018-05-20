@@ -31,7 +31,7 @@
           <p>
             <strong>Who built this thing?</strong><br />
             It's built by <a href="https://victor.avasiloaei.com" target="_blank">Victor Avasiloaei</a>, a software developer based in Amsterdam, Netherlands, who finds it weird to refer to himself in 3rd person.<br />
-            The code behind it is available on <a target="_blank" href="https://gitub.com/victorelu/cinestat-frontend">GitHub</a>. This page is NOT affiliated with IMDb in any way.
+            The code behind it is available on <a target="_blank" href="https://github.com/victorelu/cinestat-frontend">GitHub</a>. This page is NOT affiliated with IMDb in any way.
           </p>
         </div>
       </div>

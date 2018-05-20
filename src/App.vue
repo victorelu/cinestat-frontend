@@ -3,7 +3,7 @@
     <div class="loading" v-if="loading">Loading&#8230;</div>
     <nav class="navbar">
       <div class="container">
-        <div class="col-sm-6">
+        <div class="col-sm-6 brand-wrap">
           <a class="navbar-brand" href="#">
             cinestat
           </a>

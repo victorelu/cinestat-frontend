@@ -6,7 +6,7 @@
           <input type="text" required class="form-control" placeholder="Your First Name" v-model="name" />
           <div class="input-group-append">
             <button class="btn" type="button" @click="getLink()">
-              Get shareable link
+              Get link
             </button>
           </div>
           <p>

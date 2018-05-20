@@ -11,41 +11,43 @@
         </button>
       </div>
     </div>
-    <table class="table table-sm table-striped table-hover table-list">
-      <thead>
-        <tr v-for="(row, rowIndex) in header" :key="rowIndex">
-          <th
-            v-for="(cell, cellIndex) in row"
-            :key="cellIndex"
-            :rowspan="cell.rowspan"
-            :colspan="cell.colspan"
-            :class="cell.class"
-            @click="cell.sortBy ? setSortBy(cell.sortBy) : () => { }"
-          >
-            {{ cell.label }}
-            <span v-if="cell.sortBy === sort.by">
-              <span v-if="sort.direction === 'asc'">&#8593;</span>
-              <span v-else>&#8595;</span>
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="movie in sortedMovies" :key="movie.Const">
-          <td>
-            <a :href="'https://www.imdb.com/title/' + movie.Const" target="_blank">
-              {{ movie['Title'] }}
-            </a>
-          </td>
-          <td>{{ movie['Release Date'] }}</td>
-          <td>{{ movie['Date Rated'] }}</td>
-          <td>{{ movie['Genres'].join(', ') }}</td>
-          <td class="center fixed-width">{{ movie['Your Rating'] }}</td>
-          <td class="center fixed-width">{{ movie['IMDb Rating'] }}</td>
-          <td class="center fixed-width">{{ movie['Rating Difference'] }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-sm table-striped table-hover table-list">
+        <thead>
+          <tr v-for="(row, rowIndex) in header" :key="rowIndex">
+            <th
+              v-for="(cell, cellIndex) in row"
+              :key="cellIndex"
+              :rowspan="cell.rowspan"
+              :colspan="cell.colspan"
+              :class="cell.class"
+              @click="cell.sortBy ? setSortBy(cell.sortBy) : () => { }"
+            >
+              {{ cell.label }}
+              <span v-if="cell.sortBy === sort.by">
+                <span v-if="sort.direction === 'asc'">&#8593;</span>
+                <span v-else>&#8595;</span>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="movie in sortedMovies" :key="movie.Const">
+            <td>
+              <a :href="'https://www.imdb.com/title/' + movie.Const" target="_blank">
+                {{ movie['Title'] }}
+              </a>
+            </td>
+            <td>{{ movie['Release Date'] }}</td>
+            <td>{{ movie['Date Rated'] }}</td>
+            <td>{{ movie['Genres'].join(', ') }}</td>
+            <td class="center fixed-width">{{ movie['Your Rating'] }}</td>
+            <td class="center fixed-width">{{ movie['IMDb Rating'] }}</td>
+            <td class="center fixed-width">{{ movie['Rating Difference'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -58,15 +60,15 @@ export default {
       header: [
         [
           { label: 'Title', rowspan: 2, sortBy: 'Title' },
-          { label: 'Released on', rowspan: 2, class: 'date', sortBy: 'Release Date' },
-          { label: 'Rated on', rowspan: 2, class: 'date', sortBy: 'Date Rated' },
+          { label: 'Released', rowspan: 2, class: 'date', sortBy: 'Release Date' },
+          { label: 'Rated', rowspan: 2, class: 'date', sortBy: 'Date Rated' },
           { label: 'Genres', rowspan: 2 },
-          { label: 'Ratings', colspan: 3, sort: false }
+          { label: 'Ratings', colspan: 3, sort: false, class: 'rating' }
         ],
         [
-          { label: this.$store.getters.personName ? this.$store.getters.personName : 'You', sortBy: 'Your Rating' },
-          { label: 'IMDb', sortBy: 'IMDb Rating' },
-          { label: 'Difference', sortBy: 'Rating Difference' }
+          { label: this.$store.getters.personName ? this.$store.getters.personName : 'You', sortBy: 'Your Rating', class: 'rating' },
+          { label: 'IMDb', sortBy: 'IMDb Rating', class: 'rating' },
+          { label: 'Difference', sortBy: 'Rating Difference', class: 'rating' }
         ]
       ],
       filters: {
