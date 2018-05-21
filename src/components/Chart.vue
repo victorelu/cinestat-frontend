@@ -11,7 +11,7 @@ export default {
   name: 'Chart',
   props: {
     source: {
-      required: true,
+      required: false,
       type: Object
     },
     label: {
@@ -21,6 +21,14 @@ export default {
     type: {
       required: true,
       type: String
+    },
+    datasets: {
+      required: false,
+      type: Array
+    },
+    options: {
+      required: false,
+      type: Object
     },
     datasetLabels: {
       required: false,
@@ -40,7 +48,7 @@ export default {
       type: this.type,
       data: {
         labels: this.datasetLabels ? this.datasetLabels : Object.keys(this.source),
-        datasets: [
+        datasets: this.datasets ? this.datasets : [
           {
             label: this.label,
             data: Object.values(this.source),
@@ -51,7 +59,7 @@ export default {
           }
         ]
       },
-      options: {
+      options: this.options ? this.options : {
         maintainAspectRatio: false,
         legend: {
           display: this.showLegend

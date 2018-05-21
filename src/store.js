@@ -72,6 +72,8 @@ export const store = new Vuex.Store({
       let userRatings = {}
       let duration = 0
 
+      let byDuration = {}
+
       for (let movie of state.movies) {
         // Release Stats
         let releaseDate = new Date(movie['Release Date'])
@@ -106,7 +108,21 @@ export const store = new Vuex.Store({
         // Add its duration to the total duration
         if (!isNaN(parseInt(movie['Runtime (mins)']))) {
           duration += parseInt(movie['Runtime (mins)'])
+          let flooredDuration = Math.floor(movie['Runtime (mins)'] / 10)
+          if (byDuration[flooredDuration] === undefined) {
+            byDuration[flooredDuration] = {
+              ratingsSum: movie['Your Rating'],
+              numberOf: 1
+            }
+          } else {
+            byDuration[flooredDuration]['ratingsSum'] += movie['Your Rating']
+            byDuration[flooredDuration]['numberOf']++
+          }
         }
+      }
+
+      for (let minutes in byDuration) {
+        byDuration[minutes]['average'] = parseFloat((byDuration[minutes]['ratingsSum'] / byDuration[minutes]['numberOf']).toFixed(2))
       }
 
       commit('setAggregated', {
@@ -115,6 +131,7 @@ export const store = new Vuex.Store({
         genres,
         userRatings,
         directors,
+        byDuration,
         duration
       })
     }

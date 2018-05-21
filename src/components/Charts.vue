@@ -55,10 +55,24 @@
         />
       </div>
     </div>
+    <div class="row info-group">
+      <div class="col-sm-12">
+        <h2>Duration</h2>
+        <p>See if there's a trend between the duration of your movie, your will to watch and your rating after watching it.</p>
+        <Chart
+          :datasetLabels="byDuration.datasetLabels"
+          :options="byDuration.options"
+          :datasets="byDuration.datasets"
+          label="By Duration"
+          type="bar"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { getRandomColor } from '@/helpers'
 import Chart from '@/components/Chart'
 
 export default {
@@ -66,7 +80,51 @@ export default {
     Chart
   },
   data () {
+    let datasetLabels = []
+    let datasets = [{
+      label: 'Number of',
+      yAxisID: 'left-y-axis',
+      data: [],
+      backgroundColor: getRandomColor(0.5)
+    }, {
+      label: 'Average Rating',
+      yAxisID: 'right-y-axis',
+      data: [],
+      borderColor: getRandomColor(0.5),
+      backgroundColor: 'transparent',
+      type: 'line'
+    }]
+
+    for (let minutes in this.$store.getters.aggregated.byDuration) {
+      datasetLabels.push(minutes * 10 + ' - ' + minutes + 9 + ' minutes')
+      datasets[0].data.push(this.$store.getters.aggregated.byDuration[minutes]['numberOf'])
+      datasets[1].data.push(this.$store.getters.aggregated.byDuration[minutes]['average'])
+    }
+
+    let options = {
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          id: 'left-y-axis',
+          type: 'linear',
+          position: 'left'
+        }, {
+          id: 'right-y-axis',
+          type: 'linear',
+          position: 'right',
+          ticks: {
+            min: 1,
+            max: 10
+          }
+        }]
+      }
+    }
     return {
+      byDuration: {
+        datasetLabels,
+        datasets,
+        options
+      },
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
       ]
     }
