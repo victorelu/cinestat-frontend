@@ -1,6 +1,6 @@
 # cinestat
 [A tool](https://cinestat.victor.avasiloaei.com) that gives you more insight into your movie watching habits and provides fun information about the movies you watched, based on your IMDb rating history.
-An example of what the stats look like can be seen [here, on my own movie ratings history](https://cinestat.victor.avasiloaei.com/#/stats/5b0150e8e6eab64216940a30).
+An example of what the stats look like can be seen [here, on my own movie ratings history](https://cinestat.victor.avasiloaei.com/#/stats/5b029e82e6eab64216940a31).
 This application is not affiliated wih IMDb in any way.
 
 ## Who can use this?
